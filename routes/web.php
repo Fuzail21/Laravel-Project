@@ -9,6 +9,8 @@ use App\Models\Customers;
 use App\Http\Controllers\CustomerFormController;
 use Illuminate\Http\Request;
 use App\Models\CustomerRegistration;
+use App\Http\Controllers\FileUploadController;
+use App\Models\File;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -93,6 +95,13 @@ Route::get('set-session', function(Request $request){
     session()->forget('user_name');
     return redirect('get-all-session');
  });
+
+
+
+
+ Route::get('/upload-file' , [FileUploadController::class , 'render']);
+ Route::post('/upload-file' , [FileUploadController::class , 'upload'])->name('fileUpload');
+ Route::get('/download-file/{id}' ,[FileUploadController::class , 'download']);
 
 
 
